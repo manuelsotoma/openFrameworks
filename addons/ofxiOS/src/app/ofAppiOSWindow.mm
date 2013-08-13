@@ -59,6 +59,8 @@ ofAppiOSWindow::ofAppiOSWindow() {
     
     bHardwareOrientation = false;
     bOrientationIsAnimated = false;
+    
+    pixelDensity = 1.0;
 
 	bRetinaEnabled = false;
     bRetinaSupportedOnDevice = false;
@@ -282,15 +284,29 @@ void ofAppiOSWindow::setVerticalSync(bool enabled) {
     // not supported on iOS.
 }
 
+//----------------------------------------------------------------------------------- pixel density
+void ofAppiOSWindow::setPixelDensity(float pixelDensity) {
+    if(pixelDensity < 1.0) {
+        pixelDensity = 1.0;
+    }
+    this->pixelDensity = pixelDensity;
+}
+
+float ofAppiOSWindow::getPixelDensity() {
+    return pixelDensity;
+}
+
 //----------------------------------------------------------------------------------- retina.
 bool ofAppiOSWindow::enableRetina() {
     if(isRetinaSupportedOnDevice()) {
+        setPixelDensity([[UIScreen mainScreen] scale]);
         bRetinaEnabled = true;
     }
     return bRetinaEnabled;
 }
 
 bool ofAppiOSWindow::disableRetina() {
+    setPixelDensity(1.0);
     return (bRetinaEnabled = false);
 }
 

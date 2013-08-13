@@ -48,6 +48,7 @@ public:
 	void viewport(ofRectangle viewport);
 	void viewport(float x = 0, float y = 0, float width = 0, float height = 0, bool vflip=ofIsVFlipped());
 	void setOrientation(ofOrientation orientation, bool vFlip);
+    void setPixelDensity(float pixelDensity);
 	void setupScreenPerspective(float width = 0, float height = 0, float fov = 60, float nearDist = 0, float farDist = 0);
 	void setupScreenOrtho(float width = 0, float height = 0, float nearDist = -1, float farDist = 1);
 	ofRectangle getCurrentViewport();

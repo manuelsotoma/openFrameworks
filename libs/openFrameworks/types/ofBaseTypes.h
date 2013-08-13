@@ -312,6 +312,7 @@ public:
 	virtual void setupScreenPerspective(float width = 0, float height = 0, float fov = 60, float nearDist = 0, float farDist = 0){}
 	virtual void setupScreenOrtho(float width = 0, float height = 0, float nearDist = -1, float farDist = 1){}
 	virtual void setOrientation(ofOrientation orientation, bool vFlip){};
+    virtual void setPixelDensity(float pixelDensity){};
 	virtual ofRectangle getCurrentViewport(){return ofRectangle();}
 	virtual ofRectangle getNativeViewport(){return getCurrentViewport();}
 	virtual int getViewportWidth(){return 0;}

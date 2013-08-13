@@ -74,6 +74,10 @@ void ofMatrixStack::setOrientation(ofOrientation _orientation, bool vFlip){
 	modelViewProjectionMatrix = modelViewMatrix * orientedProjectionMatrix;
 }
 
+void ofMatrixStack::setPixelDensity(float value) {
+    pixelDensity = value;
+}
+
 ofOrientation ofMatrixStack::getOrientation() const{
 	return orientation;
 }
@@ -90,7 +94,7 @@ int ofMatrixStack::getRenderSurfaceWidth() const{
 	if(currentFbo){
 		return currentFbo->getWidth();
 	}else if(currentWindow){
-		return currentWindow->getWindowSize().x;
+		return currentWindow->getWindowSize().x * pixelDensity;
 	}else{
 		return 0;
 	}
@@ -100,7 +104,7 @@ int ofMatrixStack::getRenderSurfaceHeight() const{
 	if(currentFbo){
 		return currentFbo->getHeight();
 	}else if(currentWindow){
-		return currentWindow->getWindowSize().y;
+		return currentWindow->getWindowSize().y * pixelDensity;
 	}else{
 		return 0;
 	}
@@ -341,6 +345,9 @@ void ofMatrixStack::loadIdentityMatrix (void){
 
 void ofMatrixStack::loadMatrix (const float * m){
 	currentMatrix->set(m);
+    if(currentMatrixMode == OF_MATRIX_MODELVIEW) {
+        currentMatrix->glScale(pixelDensity, pixelDensity, pixelDensity);
+    }
 	updatedRelatedMatrices();
 }
 

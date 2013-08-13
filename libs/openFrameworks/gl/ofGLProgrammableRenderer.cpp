@@ -372,6 +372,11 @@ void ofGLProgrammableRenderer::setOrientation(ofOrientation orientation, bool vF
 }
 
 //----------------------------------------------------------
+void ofGLProgrammableRenderer::setPixelDensity(float pixelDensity) {
+    matrixStack.setPixelDensity(pixelDensity);
+}
+
+//----------------------------------------------------------
 void ofGLProgrammableRenderer::setupScreenPerspective(float width, float height, float fov, float nearDist, float farDist) {
 	ofRectangle currentViewport = getCurrentViewport();
 	

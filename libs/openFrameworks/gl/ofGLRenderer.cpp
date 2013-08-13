@@ -341,6 +341,11 @@ void ofGLRenderer::setOrientation(ofOrientation orientation, bool vFlip){
 }
 
 //----------------------------------------------------------
+void ofGLRenderer::setPixelDensity(float pixelDensity) {
+    matrixStack.setPixelDensity(pixelDensity);
+}
+
+//----------------------------------------------------------
 bool ofGLRenderer::isVFlipped() const{
 	return matrixStack.isVFlipped();
 }
@@ -496,6 +501,9 @@ void ofGLRenderer::loadMatrix (const float *m){
 	if(matrixStack.getCurrentMatrixMode()==OF_MATRIX_PROJECTION){
 		matrixStack.loadMatrix(m);
 		glLoadMatrixf(matrixStack.getProjectionMatrix().getPtr());
+    }else if(matrixStack.getCurrentMatrixMode()==OF_MATRIX_MODELVIEW){
+		matrixStack.loadMatrix(m);
+		glLoadMatrixf(matrixStack.getModelViewMatrix().getPtr());
 	}else{
 		glLoadMatrixf(m);
 	}

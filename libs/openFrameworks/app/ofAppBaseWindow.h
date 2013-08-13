@@ -49,6 +49,9 @@ public:
 	virtual void	disableSetupScreen(){}
 	
 	virtual void	setVerticalSync(bool enabled){};
+    
+    virtual void    setPixelDensity(float pixelDensity){};
+    virtual float   getPixelDensity(){return 1.0;};
 
 #if defined(TARGET_LINUX) && !defined(TARGET_RASPBERRY_PI)
 	virtual Display* getX11Display(){return NULL;}

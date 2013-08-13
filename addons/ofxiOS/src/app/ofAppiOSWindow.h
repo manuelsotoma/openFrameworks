@@ -76,6 +76,9 @@ public:
     virtual bool isSetupScreenEnabled();
     
     virtual void setVerticalSync(bool enabled);
+    
+    virtual void setPixelDensity(float pixelDensity);
+    virtual float getPixelDensity();
 		
     //-------------------------------------------- ios config.
     bool enableHardwareOrientation();
@@ -111,6 +114,7 @@ protected:
 	ofOrientation orientation;
     bool bHardwareOrientation;
     bool bOrientationIsAnimated;
+    float pixelDensity;
 	
     bool bRetinaEnabled;
     bool bRetinaSupportedOnDevice;

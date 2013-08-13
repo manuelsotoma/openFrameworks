@@ -186,6 +186,7 @@ void ofGLReadyCallback(){
 	ofLogVerbose("ofAppRunner") << "Version:  " << (char*)glGetString(GL_VERSION);
 	ofLogVerbose("ofAppRunner") << "GLSL:     " << (char*)glGetString(GL_SHADING_LANGUAGE_VERSION);
 
+    ofGetCurrentRenderer()->setPixelDensity(window->getPixelDensity());
     if(ofGetGLProgrammableRenderer()){
     	ofGetGLProgrammableRenderer()->setup();
     }
@@ -368,6 +369,15 @@ void ofSetOrientation(ofOrientation orientation, bool vFlip){
 //--------------------------------------
 ofOrientation ofGetOrientation(){
 	return window->getOrientation();
+}
+
+//--------------------------------------
+void ofSetPixelDensity(float pixelDensity) {
+    window->setPixelDensity(pixelDensity);
+}
+
+float ofGetPixelDensity() {
+    return window->getPixelDensity();
 }
 
 //--------------------------------------

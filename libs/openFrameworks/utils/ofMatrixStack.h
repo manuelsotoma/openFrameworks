@@ -25,6 +25,7 @@ public:
 	void setRenderSurface(const ofAppBaseWindow & window);
 
 	void setOrientation(ofOrientation orientation, bool vFlip);
+    void setPixelDensity(float pixelDensity);
 	ofOrientation getOrientation() const;
 
 	void viewport(float x = 0, float y = 0, float width = 0, float height = 0, bool vflip=ofIsVFlipped());
@@ -66,6 +67,7 @@ public:
 
 private:
 	bool vFlipped;
+    float pixelDensity;
     ofOrientation orientation;
 	ofRectangle currentViewport;
 	ofHandednessType handedness;

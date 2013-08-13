@@ -33,6 +33,9 @@ double		ofGetLastFrameTime();
 void		ofSetOrientation(ofOrientation orientation, bool vFlip=true);
 ofOrientation			ofGetOrientation();
 
+void        ofSetPixelDensity(float pixelDensity);
+float       ofGetPixelDensity();
+
 //-------------------------- cursor
 void 		ofHideCursor();
 void 		ofShowCursor();

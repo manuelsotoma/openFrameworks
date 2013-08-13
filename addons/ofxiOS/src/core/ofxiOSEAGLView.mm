@@ -153,14 +153,15 @@ static ofxiOSEAGLView * _instanceRef = nil;
 }
 
 - (void)updateDimensions {
-    windowPos->set(self.frame.origin.x * scaleFactor, self.frame.origin.y * scaleFactor, 0);
-    windowSize->set(self.bounds.size.width * scaleFactor, self.bounds.size.height * scaleFactor, 0);
+    float scale = scaleFactor / ofGetPixelDensity();
+    windowPos->set(self.frame.origin.x * scale, self.frame.origin.y * scale, 0);
+    windowSize->set(self.bounds.size.width * scale, self.bounds.size.height * scale, 0);
     
     UIScreen * currentScreen = self.window.screen;  // current screen is the screen that GLView is attached to.
     if(!currentScreen) {                            // if GLView is not attached, assume to be main device screen.
         currentScreen = [UIScreen mainScreen];
     }
-    screenSize->set(currentScreen.bounds.size.width * scaleFactor, currentScreen.bounds.size.height * scaleFactor, 0);
+    screenSize->set(currentScreen.bounds.size.width * scale, currentScreen.bounds.size.height * scale, 0);
 }
 
 - (void)notifyResized {
@@ -183,7 +184,9 @@ static ofxiOSEAGLView * _instanceRef = nil;
         es2Renderer->startRender();
     }
 
-    ofViewport(ofRectangle(0, 0, ofGetWidth(), ofGetHeight()));
+    ofRectangle viewportRect(0, 0, ofGetWidth(), ofGetHeight());
+    viewportRect.scale(ofGetPixelDensity());
+    ofViewport(viewportRect);
     
     float * bgPtr = ofBgColorPtr();
     bool bClearAuto = ofbClearBg();
@@ -271,8 +274,9 @@ static ofxiOSEAGLView * _instanceRef = nil;
 		
 		CGPoint touchPoint = [touch locationInView:self];
 		
-		touchPoint.x *= scaleFactor; // this has to be done because retina still returns points in 320x240 but with high percision
-		touchPoint.y *= scaleFactor;
+        float scale = scaleFactor / ofGetPixelDensity();
+		touchPoint.x *= scale; // this has to be done because retina still returns points in 320x240 but with high percision
+		touchPoint.y *= scale;
 		touchPoint = [self orientateTouchPoint:touchPoint];
 		
 		if( touchIndex==0 ){
@@ -304,8 +308,9 @@ static ofxiOSEAGLView * _instanceRef = nil;
 		
 		CGPoint touchPoint = [touch locationInView:self];
 		
-		touchPoint.x *= scaleFactor; // this has to be done because retina still returns points in 320x240 but with high percision
-		touchPoint.y *= scaleFactor;
+        float scale = scaleFactor / ofGetPixelDensity();
+		touchPoint.x *= scale; // this has to be done because retina still returns points in 320x240 but with high percision
+		touchPoint.y *= scale;
 		touchPoint = [self orientateTouchPoint:touchPoint];
 		
 		if( touchIndex==0 ){
@@ -337,8 +342,9 @@ static ofxiOSEAGLView * _instanceRef = nil;
 		
 		CGPoint touchPoint = [touch locationInView:self];
 		
-		touchPoint.x *= scaleFactor; // this has to be done because retina still returns points in 320x240 but with high percision
-		touchPoint.y *= scaleFactor;
+        float scale = scaleFactor / ofGetPixelDensity();
+		touchPoint.x *= scale; // this has to be done because retina still returns points in 320x240 but with high percision
+		touchPoint.y *= scale;
 		touchPoint = [self orientateTouchPoint:touchPoint];
 		
 		if( touchIndex==0 ){
@@ -369,8 +375,9 @@ static ofxiOSEAGLView * _instanceRef = nil;
 		
 		CGPoint touchPoint = [touch locationInView:self];
 		
-		touchPoint.x *= scaleFactor; // this has to be done because retina still returns points in 320x240 but with high percision
-		touchPoint.y *= scaleFactor;
+        float scale = scaleFactor / ofGetPixelDensity();
+		touchPoint.x *= scale; // this has to be done because retina still returns points in 320x240 but with high percision
+		touchPoint.y *= scale;
 		touchPoint = [self orientateTouchPoint:touchPoint];
 		
 		ofTouchEventArgs touchArgs;
